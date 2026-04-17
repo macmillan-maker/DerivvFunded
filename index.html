@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Derivv Funded | Leading Prop Firm For Synthetic & CFD Trading</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #D42B2B;
+      --red-bright: #FF3A3A;
+      --red-glow: rgba(212, 43, 43, 0.25);
+      --red-pale: rgba(212, 43, 43, 0.1);
+      --bg: #050608;
+      --bg2: #0C0D10;
+      --bg3: #111318;
+      --card: #13151A;
+      --card2: #1A1C23;
+      --border: rgba(255,255,255,0.07);
+      --border-red: rgba(212, 43, 43, 0.3);
+      --text: #F0F0F2;
+      --text-muted: #7A7D8A;
+      --text-dim: #4A4D5A;
+      --gold: #C9A84C;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* NOISE TEXTURE */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 70px;
+      background: rgba(5,6,8,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--red-bright); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--red);
+      color: var(--white) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, box-shadow 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--red-bright) !important;
+      box-shadow: 0 0 20px var(--red-glow);
+      color: var(--white) !important;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(212,43,43,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-glow2 {
+      position: absolute;
+      bottom: -300px; left: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(212,43,43,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1300px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--red-pale);
+      border: 1px solid var(--border-red);
+      color: var(--red-bright);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.85rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--red-bright);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--red-bright);
+    }
+
+    .hero-sub {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-pills {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .pill {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 100px;
+    }
+
+    .pill-dot {
+      width: 5px; height: 5px;
+      background: var(--red);
+      border-radius: 50%;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary:hover {
+      background: var(--red-bright);
+      box-shadow: 0 0 30px var(--red-glow);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+
+    .btn-ghost:hover { color: var(--text); }
+
+    /* HERO VISUAL */
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .stats-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--red), transparent);
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .stat-item { text-align: center; }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.03em;
+    }
+
+    .stat-num span { color: var(--red-bright); }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 0.25rem;
+    }
+
+    .ticker-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .ticker-label {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .ticker-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ticker-item:last-child { border-bottom: none; }
+
+    .ticker-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .ticker-change {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #4CAF85;
+    }
+
+    .ticker-change.down { color: var(--red-bright); }
+
+    .payout-toast {
+      background: linear-gradient(135deg, rgba(212,43,43,0.12), rgba(212,43,43,0.04));
+      border: 1px solid var(--border-red);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .toast-icon {
+      width: 38px; height: 38px;
+      background: var(--red);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .toast-text { flex: 1; }
+
+    .toast-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .toast-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+    }
+
+    .toast-amount {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--red-bright);
+    }
+
+    /* SECTION BASE */
+    section {
+      padding: 100px 5%;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    /* FEATURES */
+    .features-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .features-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .feature-card {
+      background: var(--bg2);
+      padding: 2rem 1.5rem;
+      transition: background 0.2s;
+    }
+
+    .feature-card:hover { background: var(--card); }
+
+    .feature-icon {
+      width: 42px; height: 42px;
+      background: var(--red-pale);
+      border: 1px solid var(--border-red);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* CHALLENGE TABS */
+    .challenge-section { background: var(--bg); }
+
+    .challenge-header { text-align: center; margin-bottom: 3rem; }
+
+    .challenge-header .section-sub { margin: 0 auto; }
+
+    .tab-group {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .tab-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.55rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.03em;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--red-pale);
+      border-color: var(--red);
+      color: var(--red-bright);
+    }
+
+    .challenge-cards {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+    }
+
+    .challenge-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+    }
+
+    .challenge-card:hover {
+      border-color: var(--border-red);
+      transform: translateY(-2px);
+    }
+
+    .challenge-card.featured {
+      border-color: var(--red);
+      box-shadow: 0 0 30px var(--red-glow);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: 0; right: 0;
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-bottom-left-radius: 8px;
+    }
+
+    .card-header {
+      padding: 1.25rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--card2);
+    }
+
+    .card-size {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.03em;
+    }
+
+    .card-fee {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .card-price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .price-main {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--red-bright);
+    }
+
+    .price-old {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-decoration: line-through;
+    }
+
+    .card-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .card-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .row-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .row-val {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .card-cta {
+      margin: 0 1.25rem 1.25rem;
+      display: block;
+      background: var(--red);
+      color: var(--white);
+      text-align: center;
+      padding: 0.65rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: background 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .card-cta:hover { background: var(--red-bright); }
+
+    /* HOW IT WORKS */
+    .how-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .step-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), transparent);
+    }
+
+    .step-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--red-pale);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, var(--red) 0%, transparent 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .step-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .step-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* PAYOUTS */
+    .payouts-section { background: var(--bg); }
+
+    .payouts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3.5rem;
+    }
+
+    .payout-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .payout-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      transition: border-color 0.2s;
+    }
+
+    .payout-item:hover { border-color: var(--border-red); }
+
+    .payout-flag {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .payout-info { flex: 1; }
+
+    .payout-country {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .payout-trader {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .payout-amount {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--red-bright);
+    }
+
+    .payouts-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .payout-feature {
+      padding: 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .pf-icon {
+      width: 36px; height: 36px;
+      background: var(--red-pale);
+      border: 1px solid var(--border-red);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .pf-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .pf-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .testimonial-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: border-color 0.2s;
+    }
+
+    .testimonial-card:hover { border-color: var(--border-red); }
+
+    .stars {
+      color: var(--gold);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-text {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .testimonial-loc {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-top: 0.15rem;
+    }
+
+    /* DASHBOARD CTA */
+    .dashboard-section {
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .dashboard-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--card2), var(--card));
+      border: 1px solid var(--border-red);
+      border-radius: 24px;
+      padding: 4rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dashboard-inner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top, rgba(212,43,43,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .dashboard-inner h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .dashboard-inner p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      position: relative;
+    }
+
+    .cta-pair {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 4rem 5% 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--white);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo span { color: var(--red-bright); }
+
+    .footer-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 260px;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .social-link {
+      width: 34px; height: 34px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .social-link:hover {
+      border-color: var(--red);
+      color: var(--red-bright);
+    }
+
+    .footer-col h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      letter-spacing: 0.03em;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-bottom: 0.6rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--text); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    .disclaimer {
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* MARQUEE */
+    .marquee-section {
+      background: var(--bg2);
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 3rem;
+      animation: marquee 25s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+
+    .marquee-item {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .marquee-item::after {
+      content: '◆';
+      color: var(--red);
+      font-size: 0.5rem;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .fade-up-delay { animation-delay: 0.15s; opacity: 0; }
+    .fade-up-delay2 { animation-delay: 0.3s; opacity: 0; }
+    .fade-up-delay3 { animation-delay: 0.45s; opacity: 0; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .challenge-cards { grid-template-columns: repeat(3, 1fr); }
+      .features-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid, .features-header, .payouts-grid, .footer-grid { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .challenge-cards { grid-template-columns: 1fr 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 500px) {
+      .challenge-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="logo">Derivv <span>Funded</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#challenge">Challenges</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#" class="nav-cta">Dashboard Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge fade-up">Live Evaluations Open</div>
+        <h1 class="fade-up fade-up-delay">
+          Trade With<br/><em>Confidence.</em><br/>Get Funded.
+        </h1>
+        <p class="hero-sub fade-up fade-up-delay2">
+          A prop firm built for disciplined traders who thrive in consistent synthetic market conditions — not chaos. Up to 90% profit splits. Weekly payouts. Clear rules.
+        </p>
+        <div class="hero-pills fade-up fade-up-delay2">
+          <div class="pill"><div class="pill-dot"></div>Up to 90% Profit Split</div>
+          <div class="pill"><div class="pill-dot"></div>Weekly Payouts</div>
+          <div class="pill"><div class="pill-dot"></div>Synthetic & CFD Markets</div>
+        </div>
+        <div class="hero-ctas fade-up fade-up-delay3">
+          <a href="#challenge" class="btn-primary">Start Your Evaluation →</a>
+          <a href="#how" class="btn-ghost">How it works ↓</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="stats-card fade-up">
+          <div class="stats-row">
+            <div class="stat-item">
+              <div class="stat-num"><span>$</span>4.2M</div>
+              <div class="stat-label">Total Paid Out</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">12K<span>+</span></div>
+              <div class="stat-label">Active Traders</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num"><span>90</span>%</div>
+              <div class="stat-label">Max Profit Split</div>
+            </div>
+          </div>
+        </div>
+        <div class="ticker-card">
+          <div class="ticker-label">Live Market Snapshot</div>
+          <div class="ticker-item">
+            <div class="ticker-name">Boom 1000 Index</div>
+            <div class="ticker-change">+2.14%</div>
+          </div>
+          <div class="ticker-item">
+            <div class="ticker-name">Crash 500 Index</div>
+            <div class="ticker-change down">-1.08%</div>
+          </div>
+          <div class="ticker-item">
+            <div class="ticker-name">Volatility 75 Index</div>
+            <div class="ticker-change">+0.87%</div>
+          </div>
+          <div class="ticker-item">
+            <div class="ticker-name">Step Index</div>
+            <div class="ticker-change">+0.31%</div>
+          </div>
+        </div>
+        <div class="payout-toast">
+          <div class="toast-icon">💸</div>
+          <div class="toast-text">
+            <div class="toast-title">Payout Confirmed</div>
+            <div class="toast-sub">Trader: Kwame A. — Ghana · 3 min ago</div>
+          </div>
+          <div class="toast-amount">$1,960</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <div class="marquee-item">Boom & Crash Indices</div>
+      <div class="marquee-item">VIX Series</div>
+      <div class="marquee-item">Step Index</div>
+      <div class="marquee-item">Synthetic Forex</div>
+      <div class="marquee-item">Weekly Payouts</div>
+      <div class="marquee-item">90% Profit Split</div>
+      <div class="marquee-item">EA Trading Allowed</div>
+      <div class="marquee-item">Fee Refunded on Pass</div>
+      <div class="marquee-item">Boom & Crash Indices</div>
+      <div class="marquee-item">VIX Series</div>
+      <div class="marquee-item">Step Index</div>
+      <div class="marquee-item">Synthetic Forex</div>
+      <div class="marquee-item">Weekly Payouts</div>
+      <div class="marquee-item">90% Profit Split</div>
+      <div class="marquee-item">EA Trading Allowed</div>
+      <div class="marquee-item">Fee Refunded on Pass</div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features-section" id="about">
+    <div class="container">
+      <div class="features-header">
+        <div>
+          <div class="section-label">Why Derivv Funded</div>
+          <h2 class="section-title">Built around consistency,<br/>not luck.</h2>
+        </div>
+        <div>
+          <p class="section-sub">Clear risk limits and rules that reward execution — not gambling. Fast payouts, high profit splits, and trader-friendly conditions from day one to funded.</p>
+          <a href="#challenge" class="btn-primary" style="margin-top:1.5rem; display:inline-flex;">Start Trading →</a>
+        </div>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <div class="feature-title">Weekly Payout Cycle</div>
+          <div class="feature-desc">Withdraw profits on a fixed weekly schedule once conditions are met — no surprises, no changing rules.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <div class="feature-title">Execution-Based Evaluation</div>
+          <div class="feature-desc">Our challenge tests risk control and consistency — not gambling or lucky trades.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <div class="feature-title">Same Conditions Daily</div>
+          <div class="feature-desc">Synthetic markets provide fixed conditions with no news spikes or session manipulation.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <div class="feature-title">Scalable Capital</div>
+          <div class="feature-desc">Grow your account size over time by maintaining consistency and respecting drawdown rules.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <div class="feature-title">Strict Risk Framework</div>
+          <div class="feature-desc">Daily and overall drawdown limits protect capital and reinforce professional trading habits.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHALLENGES -->
+  <section class="challenge-section" id="challenge">
+    <div class="container">
+      <div class="challenge-header">
+        <div class="section-label">Evaluation Tiers</div>
+        <h2 class="section-title">Choose Your Challenge</h2>
+        <p class="section-sub">Fast payouts and high profit splits. Select a capital tier and prove consistency under fixed market conditions.</p>
+      </div>
+
+      <div class="tab-group">
+        <button class="tab-btn active" onclick="switchTab(this,'synthetics')">Synthetics</button>
+        <button class="tab-btn" onclick="switchTab(this,'cfd')">CFD's</button>
+        <button class="tab-btn" onclick="switchTab(this,'flex')">Flex Challenge</button>
+        <button class="tab-btn" onclick="switchTab(this,'instant')">Instant</button>
+      </div>
+
+      <!-- SYNTHETICS tab -->
+      <div id="tab-synthetics">
+        <div class="challenge-cards">
+          <div class="challenge-card">
+            <div class="card-header">
+              <div class="card-size">$5K</div>
+              <div class="card-price"><div class="price-main">$25</div><div class="price-old">$75</div></div>
+              <div class="card-fee">+ $25 after passing</div>
+            </div>
+            <div class="card-body">
+              <div class="card-row"><div class="row-label">Profit Target</div><div class="row-val">10% ($500)</div></div>
+              <div class="card-row"><div class="row-label">Daily Drawdown</div><div class="row-val">3% ($150)</div></div>
+              <div class="card-row"><div class="row-label">Max Drawdown</div><div class="row-val">8% ($400)</div></div>
+              <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
+              <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
+              <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
+              <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
+            </div>
+            <a href="#" class="card-cta">Get Started</a>
+          </div>
+          <div class="challenge-card">
+            <div class="card-header">
+              <div class="card-size">$10K</div>
+              <div class="card-price"><div class="price-main">$25</div><div class="price-old">$150</div></div>
+              <div class="card-fee">+ $80 after passing</div>
+            </div>
+            <div class="card-body">
+              <div class="card-row"><div class="row-label">Profit Target</div><div class="row-val">10% ($1K)</div></div>
+              <div class="card-row"><div class="row-label">Daily Drawdown</div><div class="row-val">3% ($300)</div></div>
+              <div class="card-row"><div class="row-label">Max Drawdown</div><div class="row-val">8% ($800)</div></div>
+              <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
+              <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
+              <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
+              <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
+            </div>
+            <a href="#" class="card-cta">Get Started</a>
+          </div>
+          <div class="challenge-card">
+            <div class="card-header">
+              <div class="card-size">$25K</div>
+              <div class="card-price"><div class="price-main">$25</div><div class="price-old">$300</div></div>
+              <div class="card-fee">+ $195 after passing</div>
+            </div>
+            <div class="card-body">
+              <div class="card-row"><div class="row-label">Profit Target</div><div class="row-val">10% ($2.5K)</div></div>
+              <div class="card-row"><div class="row-label">Daily Drawdown</div><div class="row-val">3% ($750)</div></div>
+              <div class="card-row"><div class="row-label">Max Drawdown</div><div class="row-val">8% ($2K)</div></div>
+              <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
+              <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
+              <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
+              <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
+            </div>
+            <a href="#" class="card-cta">Get Started</a>
+          </div>
+          <div class="challenge-card featured">
+            <div class="featured-badge">Best Value</div>
+            <div class="card-header">
+              <div class="card-size">$50K</div>
+              <div class="card-price"><div class="price-main">$25</div><div class="price-old">$450</div></div>
+              <div class="card-fee">+ $295 after passing</div>
+            </div>
+            <div class="card-body">
+              <div class="card-row"><div class="row-label">Profit Target</div><div class="row-val">10% ($5K)</div></div>
+              <div class="card-row"><div class="row-label">Daily Drawdown</div><div class="row-val">3% ($1.5K)</div></div>
+              <div class="card-row"><div class="row-label">Max Drawdown</div><div class="row-val">8% ($4K)</div></div>
+              <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
+              <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
+              <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
+              <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
+            </div>
+            <a href="#" class="card-cta">Get Started</a>
+          </div>
+          <div class="challenge-card">
+            <div class="card-header">
+              <div class="card-size">$100K</div>
+              <div class="card-price"><div class="price-main">$25</div><div class="price-old">$750</div></div>
+              <div class="card-fee">+ $525 after passing</div>
+            </div>
+            <div class="card-body">
+              <div class="card-row"><div class="row-label">Profit Target</div><div class="row-val">10% ($10K)</div></div>
+              <div class="card-row"><div class="row-label">Daily Drawdown</div><div class="row-val">3% ($3K)</div></div>
+              <div class="card-row"><div class="row-label">Max Drawdown</div><div class="row-val">8% ($8K)</div></div>
+              <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
+              <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
+              <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
+              <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
+            </div>
+            <a href="#" class="card-cta">Get Started</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- HIDDEN TABS (same structure, shown via JS) -->
+      <div id="tab-cfd" style="display:none">
+        <div class="challenge-cards">
+          <div class="challenge-card">
+            <div class="card-header">
+              <div class="card-size">$5K</div>
+              <div class="card-price"><div class="price-main">$50</div><div class="price-old">$75</div></div>
+              <div class="card-fee">Save $25</div>
+            </div>
+            <div class="card-body">
+              <div class="card-row"><div class="row-label">Profit Target</div><div class="row-val">10% ($500)</div></div>
+              <div class="card-row"><div class="row-label">Daily Drawdown</div><div class="row-val">4% ($200)</div></div>
+              <div class="card-row"><div class="row-label">Max Drawdown</div><div class="row-val">6% ($300)</div></div>
+              <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
+              <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
+              <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
+              <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
+            </div>
+            <a href="#" class="card-cta">Get Started</a>
+          </div>
+          <div class="challenge-card">
+            <div class="card-header">
+              <div class="card-size">$10K</div>
+              <div class="card-price"><div class="price-main">$95</div><div class="price-old">$145</div></div>
+              <div class="card-fee">Save $50</div>
+            </div>
+            <div class="card-body">
+              <div class="card-row"><div class="row-label">Profit Target</div><div class="row-val">10% ($1K)</div></div>
+              <div class="card-row"><div class="row-label">Daily Drawdown</div><div class="row-val">4% ($400)</div></div>
+              <div class="card-row"><div class="row-label">Max Drawdown</div><div class="row-val">6% ($600)</div></div>
+              <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
+              <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
+              <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
+              <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
+            </div>
+            <a href="#" class="card-cta">Get Started</a>
+          </div>
+          <div class="challenge-card featured">
+            <div class="featured-badge">Best Value</div>
+            <div class="card-header">
+              <div class="card-size">$50K</div>
+              <div class="card-price"><div class="price-main">$325</div><div class="price-old">$450</div></div>
+              <div class="card-fee">Save $125</div>
+            </div>
+            <div class="card-body">
+              <div class="card-row"><div class="row-label">Profit Target</div><div class="row-val">10% ($5K)</div></div>
+              <div class="card-row"><div class="row-label">Daily Drawdown</div><div class="row-val">4% ($2K)</div></div>
+              <div class="card-row"><div class="row-label">Max Drawdown</div><div class="row-val">6% ($3K)</div></div>
+              <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
+              <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
+              <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
+              <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
+            </div>
+            <a href="#" class="card-cta">Get Started</a>
+          </div>
+          <div class="challenge-card">
+            <div class="card-header">
+              <div class="card-size">$100K</div>
+              <div class="card-price"><div class="price-main">$550</div><div class="price-old">$750</div></div>
+              <div class="card-fee">Save $200</div>
+            </div>
+            <div class="card-body">
+              <div class="card-row"><div class="row-label">Profit Target</div><div class="row-val">10% ($10K)</div></div>
+              <div class="card-row"><div class="row-label">Daily Drawdown</div><div class="row-val">4% ($4K)</div></div>
+              <div class="card-row"><div class="row-label">Max Drawdown</div><div class="row-val">6% ($6K)</div></div>
+              <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
+              <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
+              <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
+              <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
+            </div>
+            <a href="#" class="card-cta">Get Started</a>
+          </div>
+          <div class="challenge-card">
+            <div class="card-header">
+              <div class="card-size">200K</div>
+              <div class="card-price"><div class="price-main" style="font-size:0.9rem;color:var(--text-muted)">Coming Soon</div></div>
+            </div>
+            <div class="card-body">
+              <div class="card-row"><div class="row-label">Profit Target</div><div class="row-val">8% ($16K)</div></div>
+              <div class="card-row"><div class="row-label">Daily Drawdown</div><div class="row-val">3% ($6K)</div></div>
+              <div class="card-row"><div class="row-label">Max Drawdown</div><div class="row-val">6% ($12K)</div></div>
+              <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:30</div></div>
+            </div>
+            <a href="#" class="card-cta" style="background:var(--card2);color:var(--text-muted);cursor:default;">Coming Soon</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-flex" style="display:none">
+        <div class="challenge-cards">
+          <div class="challenge-card">
+            <div class="card-header">
+              <div class="card-size">$5K</div>
+              <div class="card-price"><div class="price-main">$39</div><div class="price-old">$59</div></div>
+              <div class="card-fee">Save $20 · 2 Step</div>
+            </div>
+            <div class="card-body">
+              <div class="card-row"><div class="row-label">P1 Target</div><div class="row-val">8% ($400)</div></div>
+              <div class="card-row"><div class="row-label">P2 Target</div><div class="row-val">5% ($250)</div></div>
+              <div class="card-row"><div class="row-label">Daily Drawdown</div><div class="row-val">3% ($150)</div></div>
+              <div class="card-row"><div class="row-label">Max Drawdown</div><div class="row-val">6% ($300)</div></div>
+              <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
+              <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
+            </div>
+            <a href="#" class="card-cta">Get Started</a>
+          </div>
+          <div class="challenge-card featured">
+            <div class="featured-badge">Popular</div>
+            <div class="card-header">
+              <div class="card-size">$50K</div>
+              <div class="card-price"><div class="price-main">$299</div><div class="price-old">$369</div></div>
+              <div class="card-fee">Save $70 · 2 Step</div>
+            </div>
+            <div class="card-body">
+              <div class="card-row"><div class="row-label">P1 Target</div><div class="row-val">8% ($4K)</div></div>
+              <div class="card-row"><div class="row-label">P2 Target</div><div class="row-val">5% ($2.5K)</div></div>
+              <div class="card-row"><div class="row-label">Daily Drawdown</div><div class="row-val">3% ($1.5K)</div></div>
+              <div class="card-row"><div class="row-label">Max Drawdown</div><div class="row-val">6% ($3K)</div></div>
+              <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
+              <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
+            </div>
+            <a href="#" class="card-cta">Get Started</a>
+          </div>
+          <div class="challenge-card">
+            <div class="card-header">
+              <div class="card-size">$100K</div>
+              <div class="card-price"><div class="price-main">$499</div><div class="price-old">$599</div></div>
+              <div class="card-fee">Save $100 · 2 Step</div>
+            </div>
+            <div class="card-body">
+              <div class="card-row"><div class="row-label">P1 Target</div><div class="row-val">8% ($8K)</div></div>
+              <div class="card-row"><div class="row-label">P2 Target</div><div class="row-val">5% ($5K)</div></div>
+              <div class="card-row"><div class="row-label">Daily Drawdown</div><div class="row-val">3% ($3K)</div></div>
+              <div class="card-row"><div class="row-label">Max Drawdown</div><div class="row-val">6% ($6K)</div></div>
+              <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
+              <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
+            </div>
+            <a href="#" class="card-cta">Get Started</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-instant" style="display:none">
+        <div style="text-align:center; padding:4rem; color:var(--text-muted);">
+          <div style="font-size:2rem;margin-bottom:1rem;">⚡</div>
+          <div class="section-title" style="font-size:1.4rem;">Instant Funded — Coming Soon</div>
+          <p style="margin-top:0.5rem;">Skip the evaluation and get funded directly. Join the waitlist to be notified.</p>
+          <a href="#" class="btn-primary" style="margin-top:1.5rem; display:inline-flex;">Join Waitlist</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section" id="how">
+    <div class="container">
+      <div class="section-label">Simple Process</div>
+      <h2 class="section-title">Three Steps to Funded</h2>
+      <p class="section-sub">Simple process. Fast funding. Weekly payouts.</p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-title">Start for Just $25</div>
+          <div class="step-desc">Get instant access to your evaluation for only $25. There's no need to pay the full simulation fee upfront. Select a capital tier aligned with your strategy and risk tolerance.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-title">Pass First, Pay Later</div>
+          <div class="step-desc">Demonstrate consistency by reaching the profit objective while respecting daily and overall drawdown limits. Trade synthetic and forex markets under predefined rules. You'll only be charged the full fee once you pass.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-title">Get Funded up to $100K</div>
+          <div class="step-desc">Once evaluation conditions are met, trade with a funded account and become eligible for profit withdrawals on a scheduled weekly payout cycle. Capital scales with sustained performance.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAYOUTS -->
+  <section class="payouts-section" id="payouts">
+    <div class="container">
+      <div class="section-label">Global Traders</div>
+      <h2 class="section-title">Highest Payouts by Country</h2>
+      <p class="section-sub">Examples of verified profit withdrawals from funded traders across our core regions.</p>
+      <div class="payouts-grid">
+        <div class="payout-list">
+          <div class="payout-item">
+            <div class="payout-flag">🇿🇦</div>
+            <div class="payout-info">
+              <div class="payout-country">South Africa</div>
+              <div class="payout-trader">Sipho M.</div>
+            </div>
+            <div class="payout-amount">$3,850</div>
+          </div>
+          <div class="payout-item">
+            <div class="payout-flag">🇮🇳</div>
+            <div class="payout-info">
+              <div class="payout-country">India</div>
+              <div class="payout-trader">Arjun R.</div>
+            </div>
+            <div class="payout-amount">$2,420</div>
+          </div>
+          <div class="payout-item">
+            <div class="payout-flag">🇬🇭</div>
+            <div class="payout-info">
+              <div class="payout-country">Ghana</div>
+              <div class="payout-trader">Kwame A.</div>
+            </div>
+            <div class="payout-amount">$1,960</div>
+          </div>
+          <div class="payout-item">
+            <div class="payout-flag">🇳🇬</div>
+            <div class="payout-info">
+              <div class="payout-country">Nigeria</div>
+              <div class="payout-trader">Ibrahim S.</div>
+            </div>
+            <div class="payout-amount">$2,730</div>
+          </div>
+          <div class="payout-item">
+            <div class="payout-flag">🇬🇧</div>
+            <div class="payout-info">
+              <div class="payout-country">United Kingdom</div>
+              <div class="payout-trader">Daniel W.</div>
+            </div>
+            <div class="payout-amount">$4,120</div>
+          </div>
+          <div class="payout-item">
+            <div class="payout-flag">🇰🇪</div>
+            <div class="payout-info">
+              <div class="payout-country">Kenya</div>
+              <div class="payout-trader">David M.</div>
+            </div>
+            <div class="payout-amount">$1,540</div>
+          </div>
+        </div>
+        <div class="payouts-right">
+          <div class="payout-feature">
+            <div class="pf-icon">⚡</div>
+            <div>
+              <div class="pf-title">Consistent Liquidity</div>
+              <div class="pf-desc">Trade under stable conditions with controlled spreads and execution designed for synthetic markets.</div>
+            </div>
+          </div>
+          <div class="payout-feature">
+            <div class="pf-icon">🤖</div>
+            <div>
+              <div class="pf-title">Manual & Automated Trading</div>
+              <div class="pf-desc">Trade manually or use EAs within defined risk rules — execution stays consistent either way.</div>
+            </div>
+          </div>
+          <div class="payout-feature">
+            <div class="pf-icon">📱</div>
+            <div>
+              <div class="pf-title">Personalised Trader Dashboard</div>
+              <div class="pf-desc">Track performance, drawdown, objectives, and payout eligibility in real time — all in one place.</div>
+            </div>
+          </div>
+          <div class="payout-feature">
+            <div class="pf-icon">📉</div>
+            <div>
+              <div class="pf-title">Advanced Charting</div>
+              <div class="pf-desc">Professional-grade technical analysis tools at your fingertips with full platform integration.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section" id="reviews">
+    <div class="container">
+      <div class="section-label">Trader Reviews</div>
+      <h2 class="section-title">Trusted by Traders Worldwide</h2>
+      <p class="section-sub">Fast payouts, trader-friendly rules, and real results.</p>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">"The dashboard is a big win for me. You always know your drawdown, targets, and where you stand. Very clean setup."</div>
+          <div class="testimonial-author">Sanjay V.</div>
+          <div class="testimonial-loc">Surat, India</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">"Not easy, but fair. If you manage risk properly, you can pass. That's all I want from a prop firm."</div>
+          <div class="testimonial-author">Emmanuel B.</div>
+          <div class="testimonial-loc">Takoradi, Ghana</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">"Payouts came through exactly as explained. No drama. Same rules before and after funding, which is rare."</div>
+          <div class="testimonial-author">Sadiq M.</div>
+          <div class="testimonial-loc">Kano, Nigeria</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">"I like that Derivv Funded doesn't feel gimmicky. Strong structure, clear rules, and the occasional competitions are a nice extra."</div>
+          <div class="testimonial-author">Oliver H.</div>
+          <div class="testimonial-loc">Birmingham, United Kingdom</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="background:var(--bg); padding:100px 5%;">
+    <div class="container">
+      <div class="section-label">Questions</div>
+      <h2 class="section-title" style="margin-bottom:2.5rem;">Frequently Asked</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; max-width:900px;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;">
+          <div style="font-weight:600;color:var(--white);margin-bottom:0.5rem;font-size:0.9rem;">Can I use an EA or bot?</div>
+          <div style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;">Yes, automated trading is permitted within the defined risk rules. EAs must respect all drawdown and position limits.</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;">
+          <div style="font-weight:600;color:var(--white);margin-bottom:0.5rem;font-size:0.9rem;">When do I get paid?</div>
+          <div style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;">Funded traders receive payouts on a fixed weekly schedule once payout conditions are met. No surprises, no rule changes.</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;">
+          <div style="font-weight:600;color:var(--white);margin-bottom:0.5rem;font-size:0.9rem;">Is my evaluation fee refunded?</div>
+          <div style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;">Yes. The challenge fee is refunded with your first payout after successfully passing and receiving a funded account.</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;">
+          <div style="font-weight:600;color:var(--white);margin-bottom:0.5rem;font-size:0.9rem;">What markets can I trade?</div>
+          <div style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;">Derivv Funded offers Synthetic indices (Boom, Crash, VIX, Step, Jump) and CFD instruments including Forex pairs.</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;">
+          <div style="font-weight:600;color:var(--white);margin-bottom:0.5rem;font-size:0.9rem;">Can I scale my account?</div>
+          <div style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;">Yes. Consistent performance and adherence to risk limits makes you eligible for capital scaling over time.</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;">
+          <div style="font-weight:600;color:var(--white);margin-bottom:0.5rem;font-size:0.9rem;">What if I fail the evaluation?</div>
+          <div style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;">Failing doesn't mean you're a bad trader. You can restart any evaluation. Review your performance and come back stronger.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="dashboard-section">
+    <div class="container">
+      <div class="dashboard-inner">
+        <h2>Trade With Structure.<br/>Track Everything That Matters.</h2>
+        <p>Your personalised dashboard shows drawdown, targets, payout eligibility, and performance history — all in real time.</p>
+        <div class="cta-pair">
+          <a href="#challenge" class="btn-primary">Start Your Evaluation →</a>
+          <a href="#" class="btn-ghost">View Dashboard ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <a href="#" class="footer-logo">Derivv <span>Funded</span></a>
+        <p class="footer-desc">A prop firm built for disciplined traders who thrive in consistent synthetic market conditions — not chaos. Fast payouts, clear rules.</p>
+        <div class="social-links">
+          <a href="#" class="social-link">𝕏</a>
+          <a href="#" class="social-link">in</a>
+          <a href="#" class="social-link">📸</a>
+          <a href="#" class="social-link">💬</a>
+          <a href="#" class="social-link">✈️</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#challenge">Challenges</a>
+        <a href="#">Dashboard</a>
+        <a href="#">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">Synthetic Challenge Terms</a>
+        <a href="#">CFD Challenge Terms</a>
+        <a href="#">Instant Account Terms</a>
+        <a href="#faq">FAQ's</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Partners</h4>
+        <a href="#">Affiliates</a>
+        <a href="#">Refer a Trader</a>
+        <a href="#">Partnership Program</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Derivv Funded. All rights reserved.</div>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="#" style="font-size:0.75rem;color:var(--text-dim);text-decoration:none;">Privacy Policy</a>
+        <a href="#" style="font-size:0.75rem;color:var(--text-dim);text-decoration:none;">Terms</a>
+        <a href="#" style="font-size:0.75rem;color:var(--text-dim);text-decoration:none;">Risk Disclosure</a>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <strong>Disclaimer:</strong> Derivv Funded provides demo accounts for simulated trading in a non-live environment, strictly for educational and informational purposes. We do not offer real-time investment guidance, financial advice, or personalised trading strategies. Engaging in financial market trading carries a high level of risk and may not be appropriate for all participants. It is possible to experience considerable financial loss. Users should always consult a licensed financial advisor prior to making any trading or investment decisions. Past performance is not necessarily indicative of future results.
+    </div>
+  </footer>
+
+  <script>
+    function switchTab(btn, tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      ['synthetics','cfd','flex','instant'].forEach(t => {
+        const el = document.getElementById('tab-' + t);
+        if (el) el.style.display = t === tab ? 'block' : 'none';
+      });
+    }
+
+    // Scroll-based fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.step-card, .feature-card, .challenge-card, .testimonial-card, .payout-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(16px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
