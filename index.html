@@ -1077,6 +1077,109 @@
     @media (max-width: 500px) {
       .challenge-cards { grid-template-columns: 1fr; }
     }
+
+    /* ── PAYMENT MODAL ── */
+    .dv-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.88); backdrop-filter: blur(8px);
+      z-index: 9999; align-items: center; justify-content: center; padding: 16px;
+    }
+    .dv-overlay.open { display: flex; }
+    .dv-modal {
+      background: #111; border: 1px solid #1e1e1e; border-radius: 16px;
+      width: 100%; max-width: 460px; overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(212,43,43,0.1);
+      animation: dvSlideUp 0.32s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes dvSlideUp {
+      from { transform: translateY(28px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+    .dv-header {
+      background: linear-gradient(135deg,#150a0a,#100808);
+      border-bottom: 1px solid #2a1212; padding: 18px 22px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .dv-header-left { display: flex; align-items: center; gap: 12px; }
+    .dv-logo-dot {
+      width: 36px; height: 36px; background: var(--red); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne',sans-serif; font-weight: 900; font-size: 14px; color: #fff;
+    }
+    .dv-header-title { color: #fff; font-size: 14px; font-weight: 700; line-height: 1.2; font-family: 'Syne',sans-serif; }
+    .dv-header-sub { color: #8a4a4a; font-size: 12px; }
+    .dv-close {
+      background: #1a1a1a; border: 1px solid #2a2a2a; color: #666;
+      width: 30px; height: 30px; border-radius: 7px; cursor: pointer;
+      font-size: 14px; display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+    }
+    .dv-close:hover { background: #222; color: #fff; }
+    .dv-amount-bar {
+      background: #0d0d0d; border-bottom: 1px solid #1a1a1a;
+      padding: 13px 22px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .dv-amount-label { color: #555; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+    .dv-amount-value { color: var(--red-bright); font-family: 'Syne',sans-serif; font-size: 20px; font-weight: 800; }
+    .dv-amount-sub { color: #3a3a3a; font-size: 10px; text-align: right; margin-top: 2px; }
+    .dv-tabs { display: flex; border-bottom: 1px solid #1e1e1e; background: #0d0d0d; }
+    .dv-tab {
+      flex: 1; padding: 13px; text-align: center; font-size: 12px; font-weight: 600;
+      color: #444; cursor: pointer; border: none; background: transparent;
+      border-bottom: 2px solid transparent; transition: all 0.2s; letter-spacing: 0.3px;
+    }
+    .dv-tab.active { color: var(--red-bright); border-bottom-color: var(--red); background: #150a0a; }
+    .dv-tab:hover:not(.active) { color: #888; background: #111; }
+    .dv-panel { display: none; padding: 22px; }
+    .dv-panel.active { display: block; }
+    .dv-binance-btn {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: #f0b90b; border-radius: 10px; padding: 14px; margin-bottom: 14px;
+      cursor: pointer; text-decoration: none; transition: opacity 0.2s; border: none; width: 100%;
+    }
+    .dv-binance-btn:hover { opacity: 0.9; }
+    .dv-binance-btn-text { font-weight: 800; font-size: 15px; color: #000; letter-spacing: -0.3px; }
+    .dv-binance-desc {
+      background: #141414; border: 1px solid #1e1e1e; border-radius: 10px;
+      padding: 13px 15px; color: #888; font-size: 12px; line-height: 1.6; margin-bottom: 14px;
+    }
+    .dv-binance-desc strong { color: #ddd; }
+    .dv-network-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #1a0d0d; border: 1px solid #3a1212; border-radius: 20px;
+      padding: 5px 12px; color: #e05050; font-size: 11px; font-weight: 600; margin-bottom: 14px;
+    }
+    .dv-network-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red-bright); }
+    .dv-qr-wrap {
+      background: #fff; border-radius: 12px; padding: 14px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 14px;
+    }
+    .dv-qr-wrap img { width: 170px; height: 170px; display: block; }
+    .dv-address-label { color: #444; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 7px; }
+    .dv-address-box {
+      background: #141414; border: 1px solid #222; border-radius: 10px;
+      padding: 12px 14px; display: flex; align-items: center; justify-content: space-between;
+      gap: 10px; margin-bottom: 12px;
+    }
+    .dv-address-text { color: #bbb; font-size: 12px; font-family: 'Courier New',monospace; word-break: break-all; line-height: 1.4; }
+    .dv-copy-btn {
+      background: #1e1e1e; border: 1px solid #2a2a2a; color: var(--red-bright);
+      padding: 7px 13px; border-radius: 7px; font-size: 11px; font-weight: 600;
+      cursor: pointer; white-space: nowrap; transition: all 0.2s; flex-shrink: 0;
+    }
+    .dv-copy-btn:hover { background: var(--red); color: #fff; border-color: var(--red); }
+    .dv-copy-btn.copied { background: #1a4a1a; color: #4caf50; border-color: #2a6a2a; }
+    .dv-warning {
+      background: #1a1000; border: 1px solid #3a2800; border-radius: 8px;
+      padding: 10px 13px; color: #c9a84c; font-size: 11px; line-height: 1.5; display: flex; gap: 8px;
+    }
+    .dv-modal-footer {
+      border-top: 1px solid #1a1a1a; padding: 12px 22px;
+      display: flex; align-items: center; justify-content: space-between; background: #0a0a0a;
+    }
+    .dv-secure { display: flex; align-items: center; gap: 6px; color: #333; font-size: 10px; }
+    .dv-support { color: #333; font-size: 10px; }
+    .dv-support a { color: #7a3a3a; text-decoration: none; }
+    .dv-support a:hover { color: var(--red-bright); }
   </style>
 </head>
 <body>
@@ -1263,7 +1366,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <a href="#" class="card-cta">Get Started</a>
+            <button onclick="dvOpenModal(25,'$5K Synthetics Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card">
             <div class="card-header">
@@ -1280,7 +1383,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <a href="#" class="card-cta">Get Started</a>
+            <button onclick="dvOpenModal(25,'$10K Synthetics Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card">
             <div class="card-header">
@@ -1297,7 +1400,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <a href="#" class="card-cta">Get Started</a>
+            <button onclick="dvOpenModal(25,'$25K Synthetics Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card featured">
             <div class="featured-badge">Best Value</div>
@@ -1315,7 +1418,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <a href="#" class="card-cta">Get Started</a>
+            <button onclick="dvOpenModal(25,'$50K Synthetics Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card">
             <div class="card-header">
@@ -1332,7 +1435,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <a href="#" class="card-cta">Get Started</a>
+            <button onclick="dvOpenModal(25,'$100K Synthetics Challenge')" class="card-cta">Get Started</button>
           </div>
         </div>
       </div>
@@ -1355,7 +1458,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <a href="#" class="card-cta">Get Started</a>
+            <button onclick="dvOpenModal(50,'$5K CFD Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card">
             <div class="card-header">
@@ -1372,7 +1475,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <a href="#" class="card-cta">Get Started</a>
+            <button onclick="dvOpenModal(95,'$10K CFD Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card featured">
             <div class="featured-badge">Best Value</div>
@@ -1390,7 +1493,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <a href="#" class="card-cta">Get Started</a>
+            <button onclick="dvOpenModal(325,'$50K CFD Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card">
             <div class="card-header">
@@ -1407,7 +1510,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <a href="#" class="card-cta">Get Started</a>
+            <button onclick="dvOpenModal(550,'$100K CFD Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card">
             <div class="card-header">
@@ -1441,7 +1544,7 @@
               <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
               <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
             </div>
-            <a href="#" class="card-cta">Get Started</a>
+            <button onclick="dvOpenModal(39,'$5K Flex Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card featured">
             <div class="featured-badge">Popular</div>
@@ -1458,7 +1561,7 @@
               <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
               <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
             </div>
-            <a href="#" class="card-cta">Get Started</a>
+            <button onclick="dvOpenModal(299,'$50K Flex Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card">
             <div class="card-header">
@@ -1474,7 +1577,7 @@
               <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
               <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
             </div>
-            <a href="#" class="card-cta">Get Started</a>
+            <button onclick="dvOpenModal(499,'$100K Flex Challenge')" class="card-cta">Get Started</button>
           </div>
         </div>
       </div>
@@ -1740,6 +1843,98 @@
       <strong>Disclaimer:</strong> Derivv Funded provides demo accounts for simulated trading in a non-live environment, strictly for educational and informational purposes. We do not offer real-time investment guidance, financial advice, or personalised trading strategies. Engaging in financial market trading carries a high level of risk and may not be appropriate for all participants. It is possible to experience considerable financial loss. Users should always consult a licensed financial advisor prior to making any trading or investment decisions. Past performance is not necessarily indicative of future results.
     </div>
   </footer>
+
+  <!-- ── PAYMENT MODAL ── -->
+  <div class="dv-overlay" id="dvPayModal">
+    <div class="dv-modal">
+      <div class="dv-header">
+        <div class="dv-header-left">
+          <div class="dv-logo-dot">D</div>
+          <div>
+            <div class="dv-header-title">Derivv Funded</div>
+            <div class="dv-header-sub" id="dvPlanLabel">Challenge Fee</div>
+          </div>
+        </div>
+        <button class="dv-close" onclick="dvCloseModal()">✕</button>
+      </div>
+      <div class="dv-amount-bar">
+        <div class="dv-amount-label">Amount Due</div>
+        <div>
+          <div class="dv-amount-value" id="dvAmountDisplay">$25 USDT</div>
+          <div class="dv-amount-sub">Refunded on first funded payout</div>
+        </div>
+      </div>
+      <div class="dv-tabs">
+        <button class="dv-tab active" onclick="dvSwitchTab('binance',this)">⚡ Binance Pay</button>
+        <button class="dv-tab" onclick="dvSwitchTab('crypto',this)">🔗 USDT TRC20</button>
+      </div>
+      <!-- Binance Pay -->
+      <div class="dv-panel active" id="dvPanel-binance">
+        <a class="dv-binance-btn" href="https://s.binance.com/CzhQy8du" target="_blank" rel="noopener">
+          <svg width="26" height="26" viewBox="0 0 126 126" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M38.6 53.3L63 28.9l24.4 24.4 14.2-14.2L63 .5.4 63.1l14.2 14.2 24-24zm0 19.4L14.2 63l24.4-24.4-14.2 14.2L63 91.9l24.4-24.4 14.2 14.2L63 125.5.4 62.9l14.2-14.2 24 24zM63 72.8L52.2 62 63 51.2 73.8 62 63 72.8z" fill="#000"/>
+          </svg>
+          <span class="dv-binance-btn-text">Pay with Binance Pay</span>
+        </a>
+        <div class="dv-binance-desc">
+          <strong>Fastest option.</strong> Pay instantly using your Binance balance — USDT, BNB, or any supported asset. Opens directly in the Binance app on mobile.
+        </div>
+        <a class="dv-binance-btn" href="https://s.binance.com/CzhQy8du" target="_blank" rel="noopener" style="margin-bottom:0;">
+          <span class="dv-binance-btn-text">Open Binance Pay →</span>
+        </a>
+      </div>
+      <!-- USDT TRC20 -->
+      <div class="dv-panel" id="dvPanel-crypto">
+        <div class="dv-network-badge"><span class="dv-network-dot"></span>Tron Network · TRC20</div>
+        <div class="dv-qr-wrap">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=TLghSQ145EJrfATEWw42xJv7CcQqzTBtSH&ecc=M" alt="USDT TRC20 QR Code" loading="lazy"/>
+        </div>
+        <div class="dv-address-label">Wallet Address</div>
+        <div class="dv-address-box">
+          <span class="dv-address-text">TLghSQ145EJrfATEWw42xJv7CcQqzTBtSH</span>
+          <button class="dv-copy-btn" id="dvCopyBtn" onclick="dvCopyAddress()">Copy</button>
+        </div>
+        <div class="dv-warning">
+          <span>⚠️</span>
+          <span>Send <strong>USDT on TRC20 only.</strong> Sending on the wrong network results in permanent loss of funds.</span>
+        </div>
+      </div>
+      <div class="dv-modal-footer">
+        <div class="dv-secure">🔒 Secure · Non-custodial</div>
+        <div class="dv-support">Need help? <a href="mailto:support@derivvfunded.com">Contact us</a></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function dvOpenModal(amount, planName) {
+      document.getElementById('dvAmountDisplay').textContent = '$' + amount + ' USDT';
+      document.getElementById('dvPlanLabel').textContent = planName || 'Challenge Fee';
+      document.getElementById('dvPayModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function dvCloseModal() {
+      document.getElementById('dvPayModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function dvSwitchTab(tab, el) {
+      document.querySelectorAll('.dv-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.dv-panel').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('dvPanel-' + tab).classList.add('active');
+    }
+    function dvCopyAddress() {
+      navigator.clipboard.writeText('TLghSQ145EJrfATEWw42xJv7CcQqzTBtSH').then(() => {
+        const btn = document.getElementById('dvCopyBtn');
+        btn.textContent = '✓ Copied'; btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2500);
+      });
+    }
+    document.getElementById('dvPayModal').addEventListener('click', function(e) {
+      if (e.target === this) dvCloseModal();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') dvCloseModal(); });
+  </script>
 
   <script>
     function switchTab(btn, tab) {
