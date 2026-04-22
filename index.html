@@ -1180,6 +1180,83 @@
     .dv-support { color: #333; font-size: 10px; }
     .dv-support a { color: #7a3a3a; text-decoration: none; }
     .dv-support a:hover { color: var(--red-bright); }
+    /* ── SIGNUP MODAL ── */
+    .su-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.88); backdrop-filter: blur(8px);
+      z-index: 10000; align-items: center; justify-content: center; padding: 16px;
+    }
+    .su-overlay.open { display: flex; }
+    .su-modal {
+      background: #111; border: 1px solid #1e1e1e; border-radius: 16px;
+      width: 100%; max-width: 420px; overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(212,43,43,0.1);
+      animation: dvSlideUp 0.32s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .su-header {
+      background: linear-gradient(135deg,#150a0a,#100808);
+      border-bottom: 1px solid #2a1212; padding: 20px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .su-header-left { display: flex; align-items: center; gap: 12px; }
+    .su-logo-dot {
+      width: 36px; height: 36px; background: var(--red); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne',sans-serif; font-weight: 900; font-size: 14px; color: #fff;
+    }
+    .su-header-title { color: #fff; font-size: 15px; font-weight: 700; font-family: 'Syne',sans-serif; line-height: 1.2; }
+    .su-header-sub { color: #8a4a4a; font-size: 12px; }
+    .su-close {
+      background: #1a1a1a; border: 1px solid #2a2a2a; color: #666;
+      width: 30px; height: 30px; border-radius: 7px; cursor: pointer;
+      font-size: 14px; display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+    }
+    .su-close:hover { background: #222; color: #fff; }
+    .su-body { padding: 28px 24px; }
+    .su-step { display: none; }
+    .su-step.active { display: block; }
+    .su-label { color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 7px; }
+    .su-input {
+      width: 100%; background: #141414; border: 1px solid #222; border-radius: 10px;
+      padding: 13px 16px; color: #fff; font-size: 14px; font-family: 'DM Sans',sans-serif;
+      margin-bottom: 16px; outline: none; transition: border-color 0.2s;
+    }
+    .su-input:focus { border-color: var(--red); }
+    .su-input::placeholder { color: #444; }
+    .su-btn {
+      width: 100%; background: var(--red); border: none; border-radius: 10px;
+      padding: 14px; color: #fff; font-size: 15px; font-weight: 700;
+      font-family: 'Syne',sans-serif; cursor: pointer; transition: all 0.2s; letter-spacing: 0.3px;
+    }
+    .su-btn:hover { background: var(--red-bright); }
+    .su-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .su-error { color: #ff6b6b; font-size: 12px; margin-bottom: 12px; display: none; }
+    .su-error.show { display: block; }
+    /* Verified state */
+    .su-verified {
+      text-align: center; padding: 8px 0 20px;
+    }
+    .su-verified-icon {
+      width: 64px; height: 64px; background: #0d2a0d; border: 2px solid #2a6a2a;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 28px; margin: 0 auto 16px;
+      animation: suPop 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes suPop {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .su-verified-title { color: #4caf50; font-family: 'Syne',sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .su-verified-sub { color: #666; font-size: 13px; margin-bottom: 24px; }
+    .su-verified-plan {
+      background: #1a0a0a; border: 1px solid #3a1212; border-radius: 10px;
+      padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .su-plan-name { color: #ccc; font-size: 13px; font-weight: 600; }
+    .su-plan-price { color: var(--red-bright); font-family: 'Syne',sans-serif; font-size: 16px; font-weight: 800; }
+    .su-terms { color: #444; font-size: 11px; text-align: center; margin-top: 14px; line-height: 1.5; }
+    .su-terms a { color: #7a3a3a; text-decoration: none; }
   </style>
 </head>
 <body>
@@ -1366,7 +1443,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <button onclick="dvOpenModal(25,'$5K Synthetics Challenge')" class="card-cta">Get Started</button>
+            <button onclick="suOpen(25,'$5K Synthetics Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card">
             <div class="card-header">
@@ -1383,7 +1460,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <button onclick="dvOpenModal(25,'$10K Synthetics Challenge')" class="card-cta">Get Started</button>
+            <button onclick="suOpen(25,'$10K Synthetics Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card">
             <div class="card-header">
@@ -1400,7 +1477,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <button onclick="dvOpenModal(25,'$25K Synthetics Challenge')" class="card-cta">Get Started</button>
+            <button onclick="suOpen(25,'$25K Synthetics Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card featured">
             <div class="featured-badge">Best Value</div>
@@ -1418,7 +1495,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <button onclick="dvOpenModal(25,'$50K Synthetics Challenge')" class="card-cta">Get Started</button>
+            <button onclick="suOpen(25,'$50K Synthetics Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card">
             <div class="card-header">
@@ -1435,7 +1512,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <button onclick="dvOpenModal(25,'$100K Synthetics Challenge')" class="card-cta">Get Started</button>
+            <button onclick="suOpen(25,'$100K Synthetics Challenge')" class="card-cta">Get Started</button>
           </div>
         </div>
       </div>
@@ -1458,7 +1535,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <button onclick="dvOpenModal(50,'$5K CFD Challenge')" class="card-cta">Get Started</button>
+            <button onclick="suOpen(50,'$5K CFD Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card">
             <div class="card-header">
@@ -1475,7 +1552,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <button onclick="dvOpenModal(95,'$10K CFD Challenge')" class="card-cta">Get Started</button>
+            <button onclick="suOpen(95,'$10K CFD Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card featured">
             <div class="featured-badge">Best Value</div>
@@ -1493,7 +1570,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <button onclick="dvOpenModal(325,'$50K CFD Challenge')" class="card-cta">Get Started</button>
+            <button onclick="suOpen(325,'$50K CFD Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card">
             <div class="card-header">
@@ -1510,7 +1587,7 @@
               <div class="card-row"><div class="row-label">Min. Trading Days</div><div class="row-val">4</div></div>
               <div class="card-row"><div class="row-label">Fee Refund</div><div class="row-val" style="color:var(--red-bright)">✓ Yes</div></div>
             </div>
-            <button onclick="dvOpenModal(550,'$100K CFD Challenge')" class="card-cta">Get Started</button>
+            <button onclick="suOpen(550,'$100K CFD Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card">
             <div class="card-header">
@@ -1544,7 +1621,7 @@
               <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
               <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
             </div>
-            <button onclick="dvOpenModal(39,'$5K Flex Challenge')" class="card-cta">Get Started</button>
+            <button onclick="suOpen(39,'$5K Flex Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card featured">
             <div class="featured-badge">Popular</div>
@@ -1561,7 +1638,7 @@
               <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
               <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
             </div>
-            <button onclick="dvOpenModal(299,'$50K Flex Challenge')" class="card-cta">Get Started</button>
+            <button onclick="suOpen(299,'$50K Flex Challenge')" class="card-cta">Get Started</button>
           </div>
           <div class="challenge-card">
             <div class="card-header">
@@ -1577,7 +1654,7 @@
               <div class="card-row"><div class="row-label">Profit Split</div><div class="row-val">80/20</div></div>
               <div class="card-row"><div class="row-label">Leverage</div><div class="row-val">1:50</div></div>
             </div>
-            <button onclick="dvOpenModal(499,'$100K Flex Challenge')" class="card-cta">Get Started</button>
+            <button onclick="suOpen(499,'$100K Flex Challenge')" class="card-cta">Get Started</button>
           </div>
         </div>
       </div>
@@ -1844,7 +1921,122 @@
     </div>
   </footer>
 
-  <!-- ── PAYMENT MODAL ── -->
+  <!-- ── SIGNUP MODAL ── -->
+  <div class="su-overlay" id="suModal">
+    <div class="su-modal">
+      <div class="su-header">
+        <div class="su-header-left">
+          <div class="su-logo-dot">D</div>
+          <div>
+            <div class="su-header-title">Create Your Account</div>
+            <div class="su-header-sub">Free · Takes 30 seconds</div>
+          </div>
+        </div>
+        <button class="su-close" onclick="suClose()">✕</button>
+      </div>
+      <div class="su-body">
+
+        <!-- Step 1: Sign up form -->
+        <div class="su-step active" id="su-step1">
+          <div class="su-label">Email Address</div>
+          <input class="su-input" id="suEmail" type="email" placeholder="you@example.com" />
+          <div class="su-label">Password</div>
+          <input class="su-input" id="suPassword" type="password" placeholder="Min. 8 characters" />
+          <div class="su-label">Confirm Password</div>
+          <input class="su-input" id="suConfirm" type="password" placeholder="Repeat password" />
+          <div class="su-error" id="suError">Please fill in all fields correctly.</div>
+          <button class="su-btn" onclick="suSubmit()">Create Account →</button>
+          <div class="su-terms">By continuing you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a></div>
+        </div>
+
+        <!-- Step 2: Verified + proceed to payment -->
+        <div class="su-step" id="su-step2">
+          <div class="su-verified">
+            <div class="su-verified-icon">✓</div>
+            <div class="su-verified-title">Account Verified!</div>
+            <div class="su-verified-sub">You're all set. Proceed to activate your challenge.</div>
+            <div class="su-verified-plan">
+              <span class="su-plan-name" id="suPlanName">$5K Synthetics Challenge</span>
+              <span class="su-plan-price" id="suPlanPrice">$25 USDT</span>
+            </div>
+            <button class="su-btn" onclick="suProceedToPayment()">Proceed to Payment →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── Signup modal state ──
+    let _pendingAmount = 25;
+    let _pendingPlan = '';
+
+    function suOpen(amount, planName) {
+      _pendingAmount = amount;
+      _pendingPlan = planName;
+      document.getElementById('suPlanName').textContent = planName;
+      document.getElementById('suPlanPrice').textContent = '$' + amount + ' USDT';
+      // Reset to step 1
+      document.getElementById('su-step1').classList.add('active');
+      document.getElementById('su-step2').classList.remove('active');
+      document.getElementById('suEmail').value = '';
+      document.getElementById('suPassword').value = '';
+      document.getElementById('suConfirm').value = '';
+      document.getElementById('suError').classList.remove('show');
+      document.getElementById('suModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function suClose() {
+      document.getElementById('suModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function suSubmit() {
+      const email = document.getElementById('suEmail').value.trim();
+      const pass = document.getElementById('suPassword').value;
+      const confirm = document.getElementById('suConfirm').value;
+      const err = document.getElementById('suError');
+
+      if (!email || !email.includes('@')) {
+        err.textContent = 'Please enter a valid email address.';
+        err.classList.add('show'); return;
+      }
+      if (pass.length < 8) {
+        err.textContent = 'Password must be at least 8 characters.';
+        err.classList.add('show'); return;
+      }
+      if (pass !== confirm) {
+        err.textContent = 'Passwords do not match.';
+        err.classList.add('show'); return;
+      }
+      err.classList.remove('show');
+
+      // Simulate verification
+      const btn = document.querySelector('#su-step1 .su-btn');
+      btn.textContent = 'Verifying...';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Create Account →';
+        btn.disabled = false;
+        document.getElementById('su-step1').classList.remove('active');
+        document.getElementById('su-step2').classList.add('active');
+      }, 1200);
+    }
+
+    function suProceedToPayment() {
+      suClose();
+      dvOpenModal(_pendingAmount, _pendingPlan);
+    }
+
+    // Close on overlay click
+    document.getElementById('suModal').addEventListener('click', function(e) {
+      if (e.target === this) suClose();
+    });
+  </script>
+
+
   <div class="dv-overlay" id="dvPayModal">
     <div class="dv-modal">
       <div class="dv-header">
